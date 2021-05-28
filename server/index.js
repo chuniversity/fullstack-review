@@ -1,7 +1,7 @@
 const express = require('express');
 var mongo = require('mongodb');
-var bodyParser = require('body-parser')
-
+var bodyParser = require('body-parser');
+var helpers = require('../helpers/github.js');
 
 let app = express();
 
@@ -12,10 +12,15 @@ app.use(bodyParser.json())
 app.post('/repos', function (req, res) {
   // TODO - your code here!
   console.log('post request!');
-  console.log(req.body )
+  var term = req.body.term;
   // This route should take the github username provided
   // and get the repo information from the github API, then
   // save the repo information in the database
+  helpers.getReposByUsername(term, function(data) {
+    console.log(data)
+  });
+
+
   res.end("Success!")
 });
 

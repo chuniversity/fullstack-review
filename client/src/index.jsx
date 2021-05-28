@@ -15,7 +15,6 @@ class App extends React.Component {
   }
 
   search (term) {
-    console.log(term);
     // $.ajax({
     //   type: "POST",
     //   url: '/repos',
