@@ -1,21 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import axios from 'axios';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       repos: []
     }
 
   }
 
   search (term) {
-    console.log(`${term} was searched`);
-    // TODO
+    console.log(term);
+    // $.ajax({
+    //   type: "POST",
+    //   url: '/repos',
+    //   data: term,
+    //   success: (data) => {
+    //     console.log('response data:', data)
+    //   },
+    //   error: (err) => {
+    //     console.error('Error submitting search term', err);
+    //   },
+    // });
+    axios.post('/repos', {
+      term: term
+    })
+    .then((data) => {
+      console.log('response', data)
+    })
+    .catch((err) => {
+      console.error('Error submitting term', err)
+    });
+
+
+
   }
 
   render () {
