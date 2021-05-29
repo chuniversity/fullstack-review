@@ -16,12 +16,15 @@ let getReposByUsername = (username, callback) => {
       'Authorization': `token ${config.TOKEN}`
     }
   };
+
+
+
   axios.get(options.url, options.headers)
     .then((data) => {
-      callback(data)
+      callback(data.data)
     })
     .catch((err) => {
-      console.log(err)
+      console.log('error fetching repos')
     });
 }
 
